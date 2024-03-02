@@ -52,7 +52,6 @@ const deleteProduct = asyncHandler(async(req,res)=>{
 const getAllProducts = asyncHandler(async(req,res)=>{
     try{
         //filtering
-        console.log(req.query);
         if(req.query.title){
             const regex = new RegExp(req.query.title, 'i');
             req.query.$or = [{title:regex}, {category:regex}, {brand:regex}];
@@ -67,8 +66,6 @@ const getAllProducts = asyncHandler(async(req,res)=>{
         /*****queryString = queryString.replace(/\b(gte|lt|let|gt)\b/g, (match)=>`$${match}`);*****/
         //console.log(queryString)
         let queryProducts = Product.find(queryObj);
-        console.log(queryProducts)
-        console.log(queryObj);
         
         //sorting
         if(req.query.sort){
