@@ -69,7 +69,7 @@ const getAllProducts = asyncHandler(async(req,res)=>{
         /*****queryString = queryString.replace(/\b(gte|lt|let|gt)\b/g, (match)=>`$${match}`);*****/
         //console.log(queryString)
         let queryProducts = Product.find(queryObj);
-        console.log(queryobj,3);
+        console.log(queryObj,3);
         //sorting
         if(req.query.sort){
             const sortBy = req.query.sort.split(",").join(" ");
