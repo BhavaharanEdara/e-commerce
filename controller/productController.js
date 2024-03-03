@@ -57,7 +57,7 @@ const getAllProducts = asyncHandler(async(req,res)=>{
         if(req.query.title){
             const regex = new RegExp(req.query.title, 'i');
             req.query.$or = [{title:regex}, {category:regex}, {brand:regex}];
-            delete req.query[title];
+            delete req.query["title"];
         }
             console.log(req.query,2);
 
