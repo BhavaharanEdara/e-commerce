@@ -392,7 +392,7 @@ const createOrder = asyncHandler(async (req,res)=>{
 const getOrders = asyncHandler(async(req,res)=>{
     const {id} = req.user;
     try{
-        const userOrders = await Order.findOne({orderBy: id});
+        const userOrders = await Order.find({orderBy: id});
         res.json(userOrders);
     }
     catch(error){
