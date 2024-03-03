@@ -127,8 +127,8 @@ const updateAUser = asyncHandler(async(req, res)=>{
 })
 
 const handleRefreshToken = asyncHandler(async (req, res)=>{
-    const cookie = req.cookies;
-    if(!cookie?.refreshToken) throw new Error("no refresh token ");
+    const cookie = {refreshToken:req.user?.refreshToken};
+    if(!cookie?.refreshToken ||cookie?.refreshToken==='') throw new Error("no refresh token");
     const refreshToken = cookie.refreshToken;
     
     const decode = jwt.verify(refreshToken, process.env.refresh_KEY);
@@ -145,8 +145,8 @@ const handleRefreshToken = asyncHandler(async (req, res)=>{
 })
 
 const logout = asyncHandler(async(req, res)=>{
-    const cookie = req.cookies;
-    if(!cookie?.refreshToken) throw new Error("no refresh token");
+    const cookie = {refreshToken:req.user?.refreshToken};
+    if(!cookie?.refreshToken ||cookie?.refreshToken==='') throw new Error("no refresh token");
     const refreshToken = cookie.refreshToken;
     const user = await User.findOne({refreshToken:refreshToken});
     if(!user){
