@@ -59,7 +59,7 @@ const getAllProducts = asyncHandler(async(req,res)=>{
             delete req.query[title];
         }
         const queryObj = {...req.query};
-        
+        console.log(queryobj,2);
         const excludeFields = ["page", "sort", "limit","fields", "title"];
         excludeFields.forEach((ele)=>{delete queryObj[ele]});
         
@@ -67,7 +67,7 @@ const getAllProducts = asyncHandler(async(req,res)=>{
         /*****queryString = queryString.replace(/\b(gte|lt|let|gt)\b/g, (match)=>`$${match}`);*****/
         //console.log(queryString)
         let queryProducts = Product.find(queryObj);
-        
+        console.log(queryobj,3);
         //sorting
         if(req.query.sort){
             const sortBy = req.query.sort.split(",").join(" ");
@@ -84,6 +84,7 @@ const getAllProducts = asyncHandler(async(req,res)=>{
                 throw new Error("This page doesnt exist");
             }
         }
+        console.log(queryobj,3);
         queryProducts =await queryProducts.skip(skip).limit(limit);
         res.json({products:queryProducts,count:count});
     }
