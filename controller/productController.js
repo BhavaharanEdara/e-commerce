@@ -50,16 +50,18 @@ const deleteProduct = asyncHandler(async(req,res)=>{
     }
 })
 const getAllProducts = asyncHandler(async(req,res)=>{
-    console.log(req.query);
     try{
         //filtering
+            console.log(req.query.title);
+
         if(req.query.title){
             const regex = new RegExp(req.query.title, 'i');
             req.query.$or = [{title:regex}, {category:regex}, {brand:regex}];
             delete req.query[title];
         }
+            console.log(req.query);
+
         const queryObj = {...req.query};
-        console.log(queryobj,2);
         const excludeFields = ["page", "sort", "limit","fields", "title"];
         excludeFields.forEach((ele)=>{delete queryObj[ele]});
         
