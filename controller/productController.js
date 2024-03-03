@@ -50,6 +50,7 @@ const deleteProduct = asyncHandler(async(req,res)=>{
     }
 })
 const getAllProducts = asyncHandler(async(req,res)=>{
+    console.log(req.query);
     try{
         //filtering
         if(req.query.title){
