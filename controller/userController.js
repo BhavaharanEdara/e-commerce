@@ -15,6 +15,7 @@ const Product = require('../models/productModel')
 const createUser = asyncHandler(async(req, res)=>{
     const email = req.body.email;
     const findUser = await User.findOne({email:email});
+    console.log(email)
     if(!findUser){
         const user = await User.create(req.body);
         res.json(user);
